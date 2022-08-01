@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Tính điểm tổng</h1>
+
+    <label for="fname">Full name:</label>
+    <input type="text" id="fname" name="fname" required  onkeyup="promtName(this)"><br><br>
+    <label for="math">Nhập điểm Toán:</label>
+    <input type="number" id="math" placeholder="xin mời nhập điểm" required onkeyup="promtMath(this)" min = "0" max = "10"><br><br>
+    <label for="literature">Nhập điểm Văn:</label>
+    <input type="number" id="literature" placeholder="xin mời nhập điểm" required onkeyup="promtLiterature(this)" min = "0" max = "10"><br><br>
+    <label for="english">Nhập điểm Anh:</label>
+    <input type="number" id="english" placeholder="xin mời nhập điểm" required onkeyup="promtEnglish(this)" min = "0" max = "10"><br><br>
+    <span>Khu vực :</span>
+    <select id="Region" value="region" style="width:76%;height: 25px;">
+        <option value="0.75">KV1</option>
+        <option value="0.50">KV2</option>
+        <option value="0.25">KV2_NT</option>
+        <option value="0">KV3</option>
+    </select>
+    <input type="submit" value="Tính điểm" onclick="myResult(event)">
+    <br>
+    <span id="result"></span>
+    </form>
+
+    <script>
+        var fName , math , literature , english , region = 0.75 ;
+
+        function promtName(obj) {
+           fName = obj.value;    
+        }
+        function promtMath(obj){
+            math = parseFloat(obj.value);
+        }
+        function promtLiterature(obj){
+            literature = parseFloat(obj.value) ;
+        }
+        function promtEnglish(obj){
+            english =parseFloat(obj.value);
+        }
+
+        let regionDropDown = document.getElementById('Region');
+        regionDropDown.addEventListener('change', function (){
+        region = parseFloat(this.value);
+    })
+
+    function myResult(e) {
+        e.preventDefault();
+        let total = math+english+literature+region;
+        document.getElementById('result').innerText = "tong diem" + total;
+    }
+    </script>
+</body>
+
+</html>

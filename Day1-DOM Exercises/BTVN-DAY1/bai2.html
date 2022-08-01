@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/action_page.php">
+        <label for="fname">Full name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <label for="age">Tuổi</label>
+        <input type="number" placeholder="Nhập tuổi của bạn" required max = "20"><br><br>
+        <label for="weight">Cân nặng:</label>
+        <input type="number" id="weight" name="weight" required onkeyup="promtWeight(this)"><br><br>
+        <label for="height">Chiều cao:</label>
+        <input type="number" id="height" name="height" required onkeyup="promtHeight(this)"><br><br>
+        <label for="BMI">điểm BMI:</label>
+        <span id="BMI" name="BMI"></span><br><br>
+        <label for="xeploai">Xếp loại </label>
+        <label id="xeploai" style="font-weight: bold"></label>
+        <input type="submit" value="tính bmi" onclick="check()">
+    </form>
+
+
+
+    <script>
+        var weight, height;
+
+        function promtWeight(obj) {
+            weight = parseFloat(obj.value);
+        }
+
+        function promtHeight(obj) {
+            height = parseFloat(obj.value);
+        }
+
+        function check() {
+            let BMI =  weight / (height*height);
+            document.getElementById('BMI').innerText = " diem BMI" + BMI;
+
+
+
+            var xeploaii = document.getElementById("xeploai");
+            if (BMI < 16) {
+                xeploaii.innerText = 'Gầy độ 3';
+            } else if (16 <= BMI && BMI < 17) {
+                xeploaii.innerText = 'Gầy độ 2';
+            } else if (17 <= BMI && BMI < 18.5) {
+                xeploaii.innerText = 'Gầy độ 1';
+            } else if (18.5 <= BMI && BMI < 25) {
+                xeploaii.innerText = 'Bình thường';
+            } else if (25 <= BMI && BMI < 30) {
+                xeploaii.innerText = 'Thừa cân';
+            } else if (30 <= BMI && BMI < 35) {
+                xeploaii.innerText = 'Béo cấp 1';
+            } else if (35 <= BMI && BMI < 40) {
+                xeploaii.innerText = 'Béo cấp 2'
+            } else {
+                xeploaii.innerText = 'Béo cấp 3';
+                
+            }
+        }
+    </script>
+</body>
+
+</html>
